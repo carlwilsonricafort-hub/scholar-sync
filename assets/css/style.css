@@ -1,0 +1,1098 @@
+/* ================================================================
+   style.css — Student Payment Portal
+   Institutional design: clean, maroon accent, tabbed layout
+   ================================================================
+
+   TABLE OF CONTENTS
+   -----------------
+   1.  Google Fonts
+   2.  CSS Variables
+   3.  Reset & Base
+   4.  Top Navigation Bar
+   5.  Page Wrapper
+   6.  Student Info Card
+   7.  Content Card
+   8.  Tabs
+   9.  Tables
+   10. Status Badges
+   11. Summary Row
+   12. Buttons
+   13. Forms & Inline Validation
+   14. Alert Messages
+   15. Auth Pages (Login / Register)
+   16. Error Page
+   17. Receipt
+   18. Cancel Page
+   19. Modal
+   20. Site Footer
+   21. Disclaimer
+   22. Utility
+   23. Responsive
+   24. Print
+
+   ================================================================ */
+
+/* ── 1. Google Fonts ──────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:wght@400;600&display=swap");
+
+/* ── 2. CSS Variables ─────────────────────────────────────────── */
+:root {
+  --maroon: #8b1a2b;
+  --maroon-dark: #6b1220;
+  --maroon-light: #f5e8ea;
+  --maroon-border: #c9414f;
+
+  --gray-100: #f4f5f7;
+  --gray-200: #e8eaed;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+
+  --green-bg: #d1fae5;
+  --green-text: #065f46;
+  --red-bg: #fee2e2;
+  --red-text: #991b1b;
+
+  --white: #ffffff;
+
+  --font-body: "Source Sans 3", sans-serif;
+  --font-display: "Source Serif 4", serif;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.18);
+
+  --radius: 4px;
+  --radius-lg: 8px;
+
+  --transition: 0.15s ease;
+}
+
+/* ── 3. Reset & Base ──────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--gray-100);
+  color: var(--gray-900);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--maroon);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── 4. Top Navigation Bar ────────────────────────────────────── */
+.site-header {
+  background: var(--maroon);
+  color: var(--white);
+  border-bottom: 3px solid var(--maroon-dark);
+}
+
+.site-header__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.site-header__nav a {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.site-header__nav a:hover,
+.site-header__nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.site-header__nav .sep {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+  padding: 0 2px;
+  user-select: none;
+}
+
+/* ── 5. Page Wrapper ──────────────────────────────────────────── */
+.page-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  flex: 1;
+  width: 100%;
+}
+
+/* ── 6. Student Info Card ─────────────────────────────────────── */
+.student-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.student-card__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gray-200);
+  background: var(--gray-100);
+  flex-shrink: 0;
+}
+
+.student-card__avatar-placeholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--maroon-light);
+  border: 2px solid var(--maroon-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--maroon);
+  font-size: 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.student-card__info {
+  flex: 1;
+}
+
+.student-card__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.student-card__meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 6px;
+}
+
+.student-card__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.student-card__meta-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-400);
+  font-weight: 600;
+}
+
+.student-card__meta-value {
+  font-size: 0.85rem;
+  color: var(--gray-700);
+  font-weight: 600;
+}
+
+/* ── 7. Content Card ──────────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.card__header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-100);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card__body {
+  padding: 20px;
+}
+
+/* ── 8. Tabs ──────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--gray-200);
+  margin-bottom: 0;
+}
+
+.tab-link {
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+  white-space: nowrap;
+}
+
+.tab-link:hover {
+  color: var(--maroon);
+  text-decoration: none;
+}
+
+.tab-link.active {
+  color: var(--maroon);
+  border-bottom-color: var(--maroon);
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+}
+.tab-content.active {
+  display: block;
+}
+
+/* ── 9. Tables ────────────────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.data-table thead tr {
+  background: var(--gray-100);
+  border-bottom: 2px solid var(--gray-300);
+}
+
+.data-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  vertical-align: middle;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.data-table tbody tr:hover {
+  background: var(--gray-100);
+}
+
+/* ── 10. Status Badges ────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge--paid {
+  background: #d1fae5;
+  color: #065f46;
+}
+.badge--pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge--failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.badge--refunded {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+/* ── 11. Summary Row ──────────────────────────────────────────── */
+.summary-bar {
+  display: flex;
+  gap: 0;
+  border-top: 2px solid var(--gray-200);
+  background: var(--gray-100);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.summary-bar__item {
+  flex: 1;
+  padding: 14px 20px;
+  border-right: 1px solid var(--gray-200);
+}
+.summary-bar__item:last-child {
+  border-right: none;
+}
+
+.summary-bar__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-400);
+  font-weight: 700;
+}
+
+.summary-bar__value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-top: 2px;
+}
+
+.summary-bar__value--balance {
+  color: var(--maroon);
+}
+
+/* ── 12. Buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    transform 0.1s;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--maroon);
+  color: var(--white);
+}
+.btn--primary:hover {
+  background: var(--maroon-dark);
+  text-decoration: none;
+  color: var(--white);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
+}
+.btn--outline:hover {
+  background: var(--maroon-light);
+  text-decoration: none;
+}
+
+.btn--danger {
+  background: #dc2626;
+  color: var(--white);
+}
+.btn--danger:hover {
+  background: #b91c1c;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.btn--sm {
+  padding: 5px 12px;
+  font-size: 0.78rem;
+}
+.btn--block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+/* ── 13. Forms & Inline Validation ───────────────────────────── */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--gray-900);
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--maroon);
+  box-shadow: 0 0 0 3px rgba(139, 26, 43, 0.12);
+}
+
+.form-control::placeholder {
+  color: var(--gray-400);
+}
+
+/* Validation states */
+.form-control.is-valid {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.form-control.is-invalid {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Inline field error message */
+.field-error {
+  display: none;
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.field-error.visible {
+  display: block;
+}
+
+/* Inline field success hint */
+.field-hint {
+  display: none;
+  font-size: 0.75rem;
+  color: #059669;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.field-hint.visible {
+  display: block;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+fieldset.form-section {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+legend.form-section__title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-500);
+  padding: 0 6px;
+}
+
+/* ── 14. Alert Messages ───────────────────────────────────────── */
+.alert {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  border-left: 3px solid transparent;
+}
+
+.alert--success {
+  background: #d1fae5;
+  color: #065f46;
+  border-left-color: #059669;
+}
+.alert--error {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left-color: #dc2626;
+}
+.alert--warning {
+  background: #fef3c7;
+  color: #92400e;
+  border-left-color: #d97706;
+}
+
+/* ── Lockout countdown timer ──────────────────────────────────── */
+.lockout-alert--done {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.lockout-timer-badge {
+  display: inline-block;
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+  min-width: 36px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 2px;
+}
+
+.lockout-progress-track {
+  margin-top: 8px;
+  height: 4px;
+  background: #fca5a5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lockout-progress-bar {
+  height: 100%;
+  background: #dc2626;
+  border-radius: 999px;
+  transition: width 1s linear;
+}
+
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── 15. Auth Pages (Login / Register) ───────────────────────── */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-image: url("../images/bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.auth-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.auth-card__header {
+  background: var(--maroon);
+  padding: 24px;
+  text-align: center;
+}
+
+.auth-card__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.auth-card__subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.auth-card__body {
+  padding: 28px;
+}
+
+.auth-footer {
+  text-align: center;
+  padding: 0 28px 24px;
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+
+.auth-footer a {
+  color: var(--maroon);
+  font-weight: 600;
+}
+
+/* Register page wider card */
+.auth-card--wide {
+  max-width: 560px;
+}
+
+/* ── 16. Error Page ───────────────────────────────────────────── */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.error-page__code {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 600;
+  color: var(--maroon);
+  line-height: 1;
+}
+
+.error-page__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-top: 8px;
+}
+
+.error-page__msg {
+  color: var(--gray-500);
+  margin-top: 8px;
+  font-size: 0.88rem;
+}
+
+.error-page__actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ── 17. Receipt ──────────────────────────────────────────────── */
+.receipt-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  max-width: 600px;
+  margin: 24px auto;
+  overflow: hidden;
+}
+
+.receipt-card__header {
+  background: var(--maroon);
+  padding: 20px 24px;
+  color: var(--white);
+}
+
+.receipt-card__portal-name {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+.receipt-card__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.receipt-card__body {
+  padding: 24px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.88rem;
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+}
+
+.receipt-row__label {
+  color: var(--gray-500);
+  font-weight: 600;
+}
+.receipt-row__value {
+  color: var(--gray-900);
+  font-weight: 600;
+  text-align: right;
+}
+.receipt-row__value--paid {
+  color: #059669;
+}
+
+/* ── 18. Cancel Page ──────────────────────────────────────────── */
+.cancel-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-100);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.cancel-icon {
+  font-size: 3rem;
+  color: var(--gray-400);
+}
+
+.cancel-page__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-top: 12px;
+}
+
+.cancel-page__msg {
+  color: var(--gray-500);
+  margin-top: 6px;
+  font-size: 0.88rem;
+}
+
+.cancel-page__actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* ── 19. Modal ────────────────────────────────────────────────── */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  /* Smooth fade-in */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.modal-backdrop.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Two-step animation: backdrop fades, card scales up */
+.modal-backdrop.entering {
+  opacity: 0;
+}
+.modal-backdrop.entering .modal-card {
+  transform: scale(0.93) translateY(8px);
+}
+
+.modal-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  transform: scale(1) translateY(0);
+  transition: transform 0.2s ease;
+}
+
+.modal-card__header {
+  background: var(--maroon);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-card__icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.modal-card__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+.modal-card__body {
+  padding: 20px;
+}
+
+.modal-card__body p {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.modal-card__body p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-card__detail {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 0.85rem;
+}
+
+.modal-card__detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.modal-card__detail-label {
+  color: var(--gray-500);
+  font-weight: 600;
+}
+
+.modal-card__detail-value {
+  color: var(--gray-900);
+  font-weight: 700;
+}
+
+.modal-card__footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ── 20. Site Footer ──────────────────────────────────────────── */
+.site-footer {
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+/* ── 21. Disclaimer ───────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.disclaimer strong {
+  color: var(--gray-500);
+}
+
+/* ── 22. Utility ──────────────────────────────────────────────── */
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.mt-4 {
+  margin-top: 4px;
+}
+.mt-8 {
+  margin-top: 8px;
+}
+.mt-16 {
+  margin-top: 16px;
+}
+.mt-24 {
+  margin-top: 24px;
+}
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-8 {
+  margin-bottom: 8px;
+}
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+/* ── 23. Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page-wrapper {
+    padding: 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .student-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .student-card__meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .summary-bar {
+    flex-direction: column;
+  }
+
+  .summary-bar__item {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .data-table {
+    font-size: 0.78rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 8px 8px;
+  }
+
+  .modal-card {
+    max-width: 100%;
+  }
+
+  .modal-card__footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-card__footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── 24. Print ────────────────────────────────────────────────── */
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .receipt-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}

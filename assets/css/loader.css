@@ -1,0 +1,43 @@
+/* ================================================================
+   loader.css — Full-page overlay spinner
+   Student Payment Portal
+   ================================================================ */
+
+#loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#loading-overlay.active {
+  display: flex;
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.loader-label {
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-family: "Source Sans 3", sans-serif;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

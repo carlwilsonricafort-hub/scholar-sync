@@ -1,0 +1,9 @@
+Options -Indexes
+
+# Block direct browser access to all PHP files in this directory.
+# These files are only ever included server-side by api/index.php —
+# they must never be requested directly via HTTP.
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

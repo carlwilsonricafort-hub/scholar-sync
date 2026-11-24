@@ -1,0 +1,23 @@
+Options -Indexes
+
+RewriteEngine On
+
+# ── API Routing ───────────────────────────────────────────────────
+# Route /student-portal/api/* to api/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# ── Block direct access to sensitive files ────────────────────────
+<FilesMatch "\.(json)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "^(curl_helper\.php|config\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── Default page ──────────────────────────────────────────────────
+DirectoryIndex login.php index.php
